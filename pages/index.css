@@ -28,9 +28,8 @@
 @import url(../blocks/profile/__edit/profile__edit.css);
 @import url(../blocks/profile/__add/profile__add.css);
 
-/* Стили для elements */
-@import url(../blocks/elements/elements.css);
 /* Стили для element */
+@import url(../blocks/element/element.css);
 @import url(../blocks/element/__list/element__list.css);
 @import url(../blocks/element/__place/element__place.css);
 @import url(../blocks/element/__image/element__image.css);
