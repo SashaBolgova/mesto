@@ -1,0 +1,18 @@
+.popup__toggle {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  transform: translate(438px, -40px);
+  background: 0;
+}
+
+.popup__toggle:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+  .popup__toggle {
+    transform: translate(262px, -36px);
+  }
+}
