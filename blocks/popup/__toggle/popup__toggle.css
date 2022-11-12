@@ -1,18 +1,23 @@
-.popup__toggle {
+.popup__toggle[type="reset"] {
+  background-image: url(../../../images/close_icon.svg);
+  background-color: rgba(0, 0, 0, .5);
   margin: 0;
   padding: 0;
   border: 0;
   transform: translate(438px, -40px);
-  background: 0;
+  width: 32px;
+  height: 32px;
 }
 
-.popup__toggle:hover {
+.popup__toggle[type="reset"]:hover {
   opacity: 0.6;
   cursor: pointer;
 }
 
 @media screen and (max-width: 500px) {
-  .popup__toggle {
+  .popup__toggle[type="reset"] {
     transform: translate(262px, -36px);
+    width: 22px;
   }
 }
+
