@@ -13,7 +13,8 @@
 8. Работа с формами;
 9. Применен JS.
 
-Ссылка на проект https://github.com/SashaBolgova/mesto.git
+Ссылка на проект https://sashabolgova.github.io/mesto/
+
 
 Данный проект направляен для ревью специалисту **ЯндексПрактикума**.
 
