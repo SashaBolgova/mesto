@@ -1,7 +1,6 @@
 @import url(../vendor/normalize.css);
 @import url(../vendor/fonts/fonts.css);
 @import url(../blocks/page/page.css);
-@import url(../blocks/scripts/index.js);
 
 /* Стили для popup */
 @import url(../blocks/popup/popup.css);
@@ -10,13 +9,12 @@
 @import url(../blocks/popup/__toggle/popup__toggle.css);
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/__submit/popup__submit.css);
-@import url(../blocks/popup/__name/popup__name.css);
-@import url(../blocks/popup/__profession/popup__profession.css);
+@import url(../blocks/popup/__input/popup__input.css);
+@import url(../blocks/popup/__input/_type/popup__input_type_profession.css);
 
 /* Стили для header */
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
-@import url(../blocks/header/__line/header__line.css);
 
 /* Стили для profile */
 @import url(../blocks/profile/profile.css);
@@ -29,15 +27,14 @@
 @import url(../blocks/profile/__add/profile__add.css);
 
 /* Стили для element */
+@import url(../blocks/elements/elements.css);
 @import url(../blocks/element/element.css);
-@import url(../blocks/element/__list/element__list.css);
-@import url(../blocks/element/__place/element__place.css);
 @import url(../blocks/element/__image/element__image.css);
 @import url(../blocks/element/__group/element__group.css);
 @import url(../blocks/element/__text/element__text.css);
-@import url(../blocks/element/__link/element__link.css);
+@import url(../blocks/element/__button/element__button.css);
+@import url(../blocks/element/__button/_active/element__button_active.css);
 
 /* Стили для footer */
 @import url(../blocks/footer/footer.css);
-@import url(../blocks/footer/__info/footer__info.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);

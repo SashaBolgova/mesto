@@ -1,4 +1,4 @@
-.popup__submit[type="submit"] {
+.popup__submit {
   background-color: #000000;
   color: #ffffff;
   margin: 48px 36px 37px;
@@ -16,14 +16,13 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 500px) {
-  .popup__submit[type="submit"] {
+@media screen and (max-width: 890px) {
+  .popup__submit {
     width: 238px;
     height: 46px;
     margin: 45px 22px 25px;
     font-size: 14px;
     line-height: 1.21;
-    padding-bottom: 14px;
   }
 }
 

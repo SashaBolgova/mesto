@@ -6,7 +6,7 @@
   align-items: baseline;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 890px) {
   .profile__info {
     gap: 8px 10px;
     margin: 26px 38px 32px 65px;

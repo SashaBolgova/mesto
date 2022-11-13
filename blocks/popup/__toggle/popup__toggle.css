@@ -1,6 +1,8 @@
-.popup__toggle[type="reset"] {
+.popup__toggle {
   background-image: url(../../../images/close_icon.svg);
-  background-color: rgba(0, 0, 0, .5);
+  background-color: transparent;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
   border: 0;
@@ -9,15 +11,17 @@
   height: 32px;
 }
 
-.popup__toggle[type="reset"]:hover {
+.popup__toggle:hover {
   opacity: 0.6;
   cursor: pointer;
 }
 
-@media screen and (max-width: 500px) {
-  .popup__toggle[type="reset"] {
-    transform: translate(262px, -36px);
+@media screen and (max-width: 890px) {
+  .popup__toggle {
+    transform: translate(261px, -37px);
+    background-size: 22px;
     width: 22px;
+    height: 22px;
   }
 }
 

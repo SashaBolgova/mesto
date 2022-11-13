@@ -3,13 +3,11 @@
   opacity: 1;
   max-width: 430px;
   border-radius: 10px;
-  margin: 195px auto 0;
   padding: 0;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 890px) {
   .popup__container {
     max-width: 282px;
-    margin-top: 123px;
   }
 }
