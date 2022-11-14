@@ -12,7 +12,8 @@
   line-height: 1.22;
 }
 .popup__submit:hover {
-  opacity: 0.8;
+  background-color: rgba(0, 0, 0, .8);
+  transition: 0.5s ease-out;
   cursor: pointer;
 }
 
@@ -25,6 +26,3 @@
     line-height: 1.21;
   }
 }
-
-
- 
