@@ -5,11 +5,15 @@
 /* Стили для popup */
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
+@import url(../blocks/popup/__block/popup__block.css);
 @import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/__toggle/popup__toggle.css);
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/__submit/popup__submit.css);
 @import url(../blocks/popup/__input/popup__input.css);
+@import url(../blocks/popup/__image-opened/popup__image-opened.css);
+@import url(../blocks/popup/__image-title/popup__image-title.css);
+@import url(../blocks/popup/__image/popup__image.css);
 
 /* Стили для header */
 @import url(../blocks/header/header.css);
@@ -23,7 +27,7 @@
 @import url(../blocks/profile/__name/profile__name.css);
 @import url(../blocks/profile/__profession/profile__profession.css);
 @import url(../blocks/profile/__edit/profile__edit.css);
-@import url(../blocks/profile/__add/profile__add.css);
+@import url(../blocks/profile/__add-card/profile__add-card.css);
 
 /* Стили для element */
 @import url(../blocks/elements/elements.css);
@@ -31,9 +35,19 @@
 @import url(../blocks/element/__image/element__image.css);
 @import url(../blocks/element/__group/element__group.css);
 @import url(../blocks/element/__text/element__text.css);
-@import url(../blocks/element/__button/element__button.css);
-@import url(../blocks/element/__button/_active/element__button_active.css);
+@import url(../blocks/element/__button-like/element__button-like.css);
+@import url(../blocks/element/__button-like/_active/element__button-like_active.css);
+@import url(../blocks/element/__button-delete/element__button-delete.css);
+
 
 /* Стили для footer */
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
+
+
+ 
+
+
+
+ 
+ 

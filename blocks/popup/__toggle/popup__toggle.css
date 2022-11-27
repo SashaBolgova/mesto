@@ -6,7 +6,6 @@
   margin: 0;
   padding: 0;
   border: 0;
-  transform: translate(438px, -40px);
   width: 32px;
   height: 32px;
 }
@@ -19,7 +18,6 @@
 
 @media screen and (max-width: 890px) {
   .popup__toggle {
-    transform: translate(261px, -37px);
     background-size: 22px;
     width: 22px;
     height: 22px;
