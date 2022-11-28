@@ -12,13 +12,14 @@
     <div class="page">
         <div class="popup" id="popup-profile">
             <div class="popup__block">
-                <button type="button" class="popup__toggle"></button>
+                <button type="button" class="popup__toggle" aria-label="Закрытие попапа"></button>
                 <div class="popup__container">
                     <h2 class="popup__title">Редактировать профиль</h2>
                     <form name="popup__form" class="popup__form">
-                        <input type="text" name="name" class="popup__input popup__input_type_name" placeholder="Имя">
+                        <input type="text" name="name" class="popup__input popup__input_type_name" placeholder="Имя"
+                            required>
                         <input type="text" name="profession" class="popup__input popup__input_type_profession"
-                            placeholder="Деятельность">
+                            placeholder="Деятельность" required>
                         <button type="submit" class="popup__submit">Сохранить</button>
                     </form>
                 </div>
@@ -26,13 +27,14 @@
         </div>
         <div class="popup" id="popup-card">
             <div class="popup__block">
-                <button type="button" class="popup__toggle"></button>
+                <button type="button" class="popup__toggle" aria-label="Закрытие попапа"></button>
                 <div class="popup__container">
                     <h2 class="popup__title">Новое место</h2>
                     <form name="popup-card__form" class="popup__form">
-                        <input type="text" name="place" class="popup__input popup__input_type_place" placeholder="Название">
-                        <input type="text" name="image" class="popup__input popup__input_type_image"
-                            placeholder="Ссылка на картинку">
+                        <input type="text" name="place" class="popup__input popup__input_type_place"
+                            placeholder="Название" required>
+                        <input type="url" name="image" class="popup__input popup__input_type_image"
+                            placeholder="Ссылка на картинку" required>
                         <button type="submit" class="popup__submit">Создать</button>
                     </form>
                 </div>
@@ -47,14 +49,23 @@
                     <img src="./images/photo-сousteau.jpg" alt="Портрет Жак-Ива Кусто" class="profile__avatar">
                     <div class="profile__info">
                         <h1 class="profile__name">Жак-Ив Кусто</h1>
-                        <button type="button" class="profile__edit"></button>
+                        <button type="button" class="profile__edit" aria-label="Открытие попапа"></button>
                         <p class="profile__profession">Исследователь океана</p>
                     </div>
                 </div>
-                <button type="button" class="profile__add-card"></button>
+                <button type="button" class="profile__add-card" aria-label="Открытие попапа"></button>
             </section>
             <section class="elements" aria-label="Места России">
             </section>
+            <div class="popup" id="popup-image">
+                <div class="popup__block">
+                    <button type="button" class="popup__toggle" aria-label="Закрытие попапа"></button>
+                    <figure class="popup__image">
+                        <img class="popup__image-large">
+                        <figcaption class="popup__image-title"></figcaption>
+                    </figure>
+                </div>
+            </div>
         </main>
         <footer class="footer">
             <p class="footer__copyright">&#169; 2020 Mesto Russia</p>
@@ -62,24 +73,16 @@
     </div>
     <template id="card">
         <article class="element">
-            <button type="button" class="element__button-delete"></button>
+            <button type="button" class="element__button-delete" aria-label="Удаление карточки"></button>
             <img class="element__image">
             <div class="element__group">
                 <h2 class="element__text"></h2>
-                <button type="button" class="element__button-like"></button>
-            </div>
-            <div class="popup" id="popup-image">
-                <div class="popup__block">
-                    <button type="button" class="popup__toggle"></button>
-                    <figure class="popup__image">
-                        <img class="popup__image-opened">
-                        <figcaption class="popup__image-title"></figcaption>
-                    </figure>
-                </div>
+                <button type="button" class="element__button-like" aria-label="Лайк карточки"></button>
             </div>
         </article>
     </template>
-    <script src="./scripts/index.js"></script>
+    <script defer src="./scripts/cards.js"></script>
+    <script defer src="./scripts/index.js"></script>
 </body>
 
 </html>
