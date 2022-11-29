@@ -1,7 +1,0 @@
-.popup__image_opened {
-  display: flex;
-  visibility: visible;
-  opacity: 1;
-  transition: 0.5s linear;
-  background: rgba(0, 0, 0, 0.9);
-}
