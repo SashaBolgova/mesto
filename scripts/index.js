@@ -61,8 +61,7 @@ const handleKeyUp = (evt) => {
 
 const closePopupByClickOutside = (evt) => {
     if (evt.target.classList.contains('popup')) {
-        const openPopupModal = document.querySelector('.popup_opened');
-        closePopup(openPopupModal);
+        closePopup(evt.currentTarget);
     }
 }
 
@@ -95,7 +94,7 @@ popupCardOpenButtonElement.addEventListener('click', function () {
     openPopup(popupCardElement);
     formCardElement.reset();
     popupCardButtonElement.classList.add('popup__button_disabled');
-    popupCardButtonElement.setAttribute('.popup__button');
+    button.disabled = 'disabled';
 });
 
 popupCardCloseButtonElement.addEventListener('click', function () {
