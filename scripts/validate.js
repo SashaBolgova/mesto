@@ -1,35 +1,41 @@
-const hideInputError = (input, config) => {
-    const error = document.querySelector(`.${input.id}-error`);
-    if (input.validity.valid) {
-        error.textContent = '';
-        error.classList.remove(config.errorClass);
-        input.classList.remove(config.inputErrorClass);
-    } 
+const hideInputError = (input, config, error) => {
+    error.textContent = '';
+    error.classList.remove(config.errorClass);
+    input.classList.remove(config.inputErrorClass);
 }
 
-const showInputError = (input, config) => {
-    const error = document.querySelector(`.${input.id}-error`);
-    if (!input.validity.valid) {
-        error.textContent = input.validationMessage;
-        error.classList.add(config.errorClass);
-        input.classList.add(config.inputErrorClass);
-    }
+const showInputError = (input, config, error) => {
+    error.textContent = input.validationMessage;
+    error.classList.add(config.errorClass);
+    input.classList.add(config.inputErrorClass);
 }
 
 const disableButton = (inputs, button, config) => {
-    const isformInvalid = inputs.some(input => !input.validity.valid);
-    if (isformInvalid) {
-        button.classList.add(config.inactiveButtonClass);
-        button.disabled = 'disabled';
-    }
+    button.classList.add(config.inactiveButtonClass);
+    button.disabled = 'disabled';
 }
 
 const enableButton = (inputs, button, config) => {
+    button.classList.remove(config.inactiveButtonClass);
+    button.disabled = '';
+}
+
+const chekInputValidity = (input, config) => {
+    const error = document.querySelector(`.${input.id}-error`);
+    if (input.validity.valid) {
+        hideInputError(input, config, error);
+    } else {
+        showInputError(input, config, error)
+    }
+}
+
+const toggleButton = (inputs, button, config) => {
     const isformValid = inputs.every(input => input.validity.valid);
     if (isformValid) {
-        button.classList.remove(config.inactiveButtonClass);
-        button.disabled = '';
-    } 
+        enableButton(inputs, button, config);
+    } else {
+        disableButton(inputs, button, config);
+    }
 }
 
 const enableValidation = (config) => {
@@ -43,14 +49,13 @@ const enableValidation = (config) => {
         })
         inputs.forEach(input => {
             input.addEventListener('input', () => {
-                hideInputError(input, config);
-                showInputError(input, config);
-                disableButton(inputs, button, config);
-                enableButton(inputs, button, config);
+                chekInputValidity(input, config);
+                toggleButton(inputs, button, config);
             })
         })
     })
 }
+
 enableValidation({
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
