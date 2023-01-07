@@ -1,11 +1,12 @@
-import { openPopup } from "./utils.js";
+import { openImagePopup } from "./utils.js";
 
 
 export class Card {
-    constructor(data, templateSelector) {
+    constructor(data, templateSelector, openImagePopup) {
         this._name = data.name;
         this._link = data.link;
         this._templateSelector = templateSelector;
+        this._openImagePopup = openImagePopup;
     }
 
     _getTemplate() {
@@ -53,13 +54,6 @@ export class Card {
     }
 
     _handleImageClick() {
-        this._popupImageElement = document.querySelector('#popup-image');
-        this._popupImageTitle = this._popupImageElement.querySelector('.popup__image-title');
-        this._popupImagePicture = this._popupImageElement.querySelector('.popup__image-large');
-
-        openPopup(this._popupImageElement);
-        this._popupImagePicture.src = this._link;
-        this._popupImagePicture.alt = this._name;
-        this._popupImageTitle.textContent = this._name;
+        this._openImagePopup(this._name, this._link);
     }
 }

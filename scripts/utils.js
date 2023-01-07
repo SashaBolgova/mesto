@@ -1,11 +1,15 @@
-export function openPopup(element) {
-    element.classList.add('popup_opened');
-    document.addEventListener('keyup', handleKeyUp);
-};
+import { openPopup } from "./index.js";
 
-const handleKeyUp = (evt) => {
-    if (evt.key === 'Escape') {
-        const openPopupModal = document.querySelector('.popup_opened');
-        closePopup(openPopupModal);
-    }
-};
+const popupImageElement = document.querySelector('#popup-image');
+const popupImageTitle = popupImageElement.querySelector('.popup__image-title');
+const popupImagePicture = popupImageElement.querySelector('.popup__image-large');
+
+
+
+export function openImagePopup (name, link) {
+    popupImagePicture.src = link;
+    popupImagePicture.alt = name;
+    popupImageTitle.textContent = name;
+
+    openPopup(popupImageElement);
+}

@@ -1,16 +1,7 @@
 import { initialCards } from "./constants.js";
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
-import { openPopup } from "./utils.js";
-
-const validationConfig = ({
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__button',
-    inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__error_visible'
-});
+import { validationConfig } from "./constants.js";
 
 const popupProfileElement = document.querySelector('#popup-profile');
 const popupProfileCloseButtonElement = popupProfileElement.querySelector('.popup__toggle');
@@ -28,7 +19,7 @@ const formCardElement = popupCardElement.querySelector('[name="popup-card__form"
 const placeInput = popupCardElement.querySelector('.popup__input_type_place');
 const imageInput = popupCardElement.querySelector('.popup__input_type_image');
 const containerElement = document.querySelector('.elements');
-const popupCardButtonElement = popupCardElement.querySelector('.popup__button');
+
 
 const popupImageElement = document.querySelector('#popup-image');
 const popupImageCloseButton = popupImageElement.querySelector('.popup__toggle');
@@ -54,11 +45,9 @@ function closePopup(element) {
     document.removeEventListener('keyup', handleKeyUp);
 };
 
-function createElement(cardData) {
-    const card = new Card(cardData, '.template-element');
-    const cardElement = card.generateCard();
-
-    return cardElement;
+export function openPopup(element) {
+    element.classList.add('popup_opened');
+    document.addEventListener('keyup', handleKeyUp);
 };
 
 function handleCardFormSubmit(evt) {
@@ -70,7 +59,7 @@ function handleCardFormSubmit(evt) {
         link: imageInput.value
     };
 
-    const element = createElement(cardElement);
+    const element = createCard(cardElement);
     containerElement.prepend(element);
 
 
@@ -86,7 +75,7 @@ function handleProfileFormSubmit(evt) {
     closePopup(popupProfileElement);
 };
 
-function handlePopupInput() {
+function openProfilePopup() {
     openPopup(popupProfileElement);
     nameInput.value = nameElement.textContent;
     jobInput.value = professionElement.textContent;
@@ -96,10 +85,11 @@ function createCard(cardData) {
     const card = new Card(cardData, '.template-element');
     const cardElement = card.generateCard();
 
-    standCard(cardElement);
+    return cardElement;
 };
 
-function standCard(cardElement) {
+function renderCard(cardData) {
+    const cardElement = createCard(cardData)
     containerElement.append(cardElement);
 }
 
@@ -126,7 +116,7 @@ popupCardElement.addEventListener('click', closePopupByClickOutside);
 
 formCardElement.addEventListener('submit', handleCardFormSubmit);
 
-popupProfileOpenButtonElement.addEventListener('click', handlePopupInput);
+popupProfileOpenButtonElement.addEventListener('click', openProfilePopup);
 popupProfileCloseButtonElement.addEventListener('click', function () {
     closePopup(popupProfileElement);
 });
@@ -135,4 +125,4 @@ popupProfileElement.addEventListener('click', closePopupByClickOutside);
 
 formProfileElement.addEventListener('submit', handleProfileFormSubmit);
 
-initialCards.forEach(createCard);
+initialCards.forEach(renderCard);
