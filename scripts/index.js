@@ -20,12 +20,21 @@ const placeInput = popupCardElement.querySelector('.popup__input_type_place');
 const imageInput = popupCardElement.querySelector('.popup__input_type_image');
 const containerElement = document.querySelector('.elements');
 
-
-const popupImageElement = document.querySelector('#popup-image');
-const popupImageCloseButton = popupImageElement.querySelector('.popup__toggle');
-
 const validatorProfile = new FormValidator(validationConfig, formProfileElement);
 const validatorCard = new FormValidator(validationConfig, formCardElement);
+
+const popupImageElement = document.querySelector('#popup-image');
+const popupImageTitle = popupImageElement.querySelector('.popup__image-title');
+const popupImagePicture = popupImageElement.querySelector('.popup__image-large');
+const popupImageCloseButton = popupImageElement.querySelector('.popup__toggle');
+
+function openImagePopup(name, link) {
+    popupImagePicture.src = link;
+    popupImagePicture.alt = name;
+    popupImageTitle.textContent = name;
+
+    openPopup(popupImageElement);
+}
 
 const handleKeyUp = (evt) => {
     if (evt.key === 'Escape') {
@@ -45,7 +54,7 @@ function closePopup(element) {
     document.removeEventListener('keyup', handleKeyUp);
 };
 
-export function openPopup(element) {
+function openPopup(element) {
     element.classList.add('popup_opened');
     document.addEventListener('keyup', handleKeyUp);
 };
@@ -61,7 +70,6 @@ function handleCardFormSubmit(evt) {
 
     const element = createCard(cardElement);
     containerElement.prepend(element);
-
 
     closePopup(popupCardElement);
 };
@@ -79,10 +87,10 @@ function openProfilePopup() {
     openPopup(popupProfileElement);
     nameInput.value = nameElement.textContent;
     jobInput.value = professionElement.textContent;
-}
+};
 
 function createCard(cardData) {
-    const card = new Card(cardData, '.template-element');
+    const card = new Card(cardData, '.template-element', openImagePopup);
     const cardElement = card.generateCard();
 
     return cardElement;
@@ -91,7 +99,7 @@ function createCard(cardData) {
 function renderCard(cardData) {
     const cardElement = createCard(cardData)
     containerElement.append(cardElement);
-}
+};
 
 validatorProfile.enableValidation();
 
@@ -106,6 +114,7 @@ popupImageElement.addEventListener('click', closePopupByClickOutside);
 popupCardOpenButtonElement.addEventListener('click', function () {
     openPopup(popupCardElement);
     formCardElement.reset();
+    validatorCard.disableButton();
 });
 
 popupCardCloseButtonElement.addEventListener('click', function () {
