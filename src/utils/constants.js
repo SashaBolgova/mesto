@@ -25,7 +25,6 @@ export const initialCards = [
     }
 ];
 
-
 export const validationConfig = ({
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
@@ -42,7 +41,6 @@ export const popupCardOpenButtonElement = document.querySelector('.profile__add-
 export const formCardElement = document.querySelector('[name="popup-card__form"]');
 export const placeInput = document.querySelector('.popup__input_type_place');
 export const imageInput = document.querySelector('.popup__input_type_image');
-export const containerElement = document.querySelector('.elements');
 export const containerSelector = '.elements';
 export const popupCardSelector = '#popup-card';
 export const nameSelector = '.profile__name';
