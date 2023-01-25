@@ -16,13 +16,12 @@ import {
     formCardElement,
     placeInput,
     imageInput,
-    containerElement,
     containerSelector,
     popupCardSelector,
     nameSelector,
-    professionSelector,
     popupProfileSelector,
-    popupImageSelector
+    popupImageSelector,
+    professionSelector
 } from "../src/utils/constants.js"
 
 const createCard = (cardData) => {
@@ -45,6 +44,12 @@ const cardsList = new Section({
 
 cardsList.renderItems();
 
+const validatorCard = new FormValidator(validationConfig, formCardElement);
+validatorCard.enableValidation();
+validatorCard.disableButton();
+const validatorProfile = new FormValidator(validationConfig, formProfileElement);
+validatorProfile.enableValidation();
+
 const popupCardAdd = new PopupWithForm(popupCardSelector, {
     handleFormSubmit: () => {
         const cardElement =
@@ -53,8 +58,8 @@ const popupCardAdd = new PopupWithForm(popupCardSelector, {
             link: imageInput.value
         };
 
-        const element = createCard(cardElement);
-        containerElement.prepend(element);
+        cardsList.addItem(createCard(cardElement));
+
         popupCardAdd.close();
     }
 });
@@ -63,15 +68,12 @@ popupCardAdd.setEventListeners();
 
 popupCardOpenButtonElement.addEventListener('click', function () {
     popupCardAdd.open();
-    const validatorCard = new FormValidator(validationConfig, formCardElement);
-    validatorCard.enableValidation();
-    validatorCard.disableButton();
 })
 
-const popupProfile = new UserInfo({ nameSelector, professionSelector });
+const userInfo = new UserInfo({ nameSelector, professionSelector });
 const popupProfileEdit = new PopupWithForm(popupProfileSelector, {
-    handleFormSubmit: () => {
-        popupProfile.setUserInfo();
+    handleFormSubmit: (data) => {
+        userInfo.setUserInfo(data);
         popupProfileEdit.close();
     }
 });
@@ -80,9 +82,7 @@ popupProfileEdit.setEventListeners();
 
 popupProfileOpenButtonElement.addEventListener('click', function () {
     popupProfileEdit.open();
-    const profileData = popupProfile.getUserInfo();
+    const profileData = userInfo.getUserInfo();
     nameInput.value = profileData.name;
     jobInput.value = profileData.job;
-    const validatorProfile = new FormValidator(validationConfig, formProfileElement);
-    validatorProfile.enableValidation();
 })
