@@ -47,3 +47,4 @@ export const nameSelector = '.profile__name';
 export const professionSelector = '.profile__profession';
 export const popupProfileSelector = '#popup-profile';
 export const popupImageSelector = '#popup-image';
+

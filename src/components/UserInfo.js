@@ -9,12 +9,12 @@ export default class UserInfo {
     getUserInfo() {
         return {
             name: this._nameElement.textContent,
-            job: this._professionElement.textContent
+            profession: this._professionElement.textContent
         }
     }
 
     setUserInfo(data) {
         this._nameElement.textContent = data.name;
-        this._professionElement.textContent = data.job;
+        this._professionElement.textContent = data.profession;
     }
 }

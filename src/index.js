@@ -1,4 +1,4 @@
-import './pages/index.css';  
+import './pages/index.css'; 
 import { initialCards } from "../src/utils/constants.js";
 import Section from "../src/components/Section.js";
 import Card from "../src/components/Card.js";
@@ -24,14 +24,19 @@ import {
     professionSelector
 } from "../src/utils/constants.js"
 
+const popupWithImage = new PopupWithImage(popupImageSelector);
+popupWithImage.setEventListeners();
+function openImage(cardData) {
+    popupWithImage.open(cardData);
+}
+
 const createCard = (cardData) => {
     const card = new Card(cardData, '.template-element', {
         handleCardClick: () => {
-            const popupWithImage = new PopupWithImage(popupImageSelector, cardData);
-            popupWithImage.open();
-            popupWithImage.setEventListeners();
+         openImage(cardData);
         }
-    });
+    }
+    );
     return card.generateCard();
 }
 
@@ -84,5 +89,5 @@ popupProfileOpenButtonElement.addEventListener('click', function () {
     popupProfileEdit.open();
     const profileData = userInfo.getUserInfo();
     nameInput.value = profileData.name;
-    jobInput.value = profileData.job;
+    jobInput.value = profileData.profession;
 })
