@@ -1,4 +1,5 @@
 .element__button-delete {
+  display: block;
   background-image: url(../../../images/basket.svg);
   background-repeat: no-repeat;
   background-color: transparent;
