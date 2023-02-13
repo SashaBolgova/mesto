@@ -1,5 +1,5 @@
 export default class Card {
-    constructor(data, templateSelector, userId, api, { handleCardClick, handleCardDelete, handleCardLike }) {
+    constructor(data, templateSelector, userId, { handleCardClick, handleCardDelete, handleCardLike }) {
         this._name = data.name;
         this._link = data.link;
         this._id = data._id;
@@ -7,7 +7,6 @@ export default class Card {
         this._likes = data.likes;
         this._templateSelector = templateSelector;
         this._userId = userId;
-        this._api = api;
         this._handleCardClick = handleCardClick;
         this._handleCardDelete = handleCardDelete;
         this._handleCardLike = handleCardLike;
@@ -44,6 +43,7 @@ export default class Card {
             this._likeButton.classList.add('element__like-button_active');
         }
 
+
         this._setEventListeners();
 
         return this._element;
@@ -64,35 +64,29 @@ export default class Card {
         });
     }
 
+    isLiked() {
+        return this._likeButton.classList.contains('element__like-button_active');
+    }
 
+    isLengthShow(newData) {
+        this._likes = newData.likes;
+        this._likeCounter.textContent = this._likes.length;
+        
+    }
 
     likeClick() {
-        if(!(this._likeButton.classList.contains('element__like-button_active'))) {
-            this._api.addLike(this._id)
-            .then((data) => {
-                this._likes = data.likes;
-                this._likeButton.classList.add('element__like-button_active');
-                this._likeCounter.textContent = this._likes.length;
-            })
-            .catch((err) => {
-                console.log(err);
-              })
+        if (!this.isLiked()) {
+            this._likeButton.classList.add('element__like-button_active');  
+           
         } else {
-            this._api.deleteLike(this._id)
-            .then((data) => {
-                this._likes = data.likes;
-                this._likeButton.classList.remove('element__like-button_active');
-                this._likeCounter.textContent = this._likes.length;
-            })
-            .catch((err) => {
-                console.log(err);
-              })
+            this._likeButton.classList.remove('element__like-button_active');
+          
         }
-        
     }
 
     deleteCard() {
         this._element.remove();
+        this._element = null;
     }
 
 }

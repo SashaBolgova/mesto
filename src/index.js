@@ -1,4 +1,4 @@
-import './pages/index.css'; 
+import './pages/index.css';
 import { api } from "./components/Api.js";
 import Section from "../src/components/Section.js";
 import Card from "../src/components/Card.js";
@@ -30,14 +30,14 @@ import {
 
 let userId = null;
 Promise.all([api.getUserInfo(), api.getInitialCards()])
-.then(([userData, cards]) => {
-    userId = userData._id;
-    userInfo.setUserInfo(userData);
-    cardsList.renderItems(cards);
-})
-.catch((err) => {
-    console.log(err);
-  }); 
+    .then(([userData, cards]) => {
+        userId = userData._id;
+        userInfo.setUserInfo(userData);
+        cardsList.renderItems(cards);
+    })
+    .catch((err) => {
+        console.log(err);
+    });
 
 const popupWithImage = new PopupWithImage(popupImageSelector);
 popupWithImage.setEventListeners();
@@ -50,32 +50,49 @@ deletePopup.setEventListeners();
 
 
 const createCard = (cardData) => {
-    const card = new Card(cardData, '.template-element', userId, api, {
+    const card = new Card(cardData, '.template-element', userId, {
         handleCardClick: () => {
-         openImage(cardData);
+            openImage(cardData);
         },
-        handleCardDelete: () =>{
+        handleCardDelete: () => {
             deletePopup.open();
             deletePopup.setConfirmPopup(() => {
-            deletePopup.showLoadingText('Удаление...');
-            api.deleteCard(cardData._id)
-            .then(() => {
-                card.deleteCard();
-                deletePopup.close();
+                deletePopup.showLoadingText('Удаление...');
+                api.deleteCard(cardData._id)
+                    .then(() => {
+                        card.deleteCard();
+                        deletePopup.close();
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    })
+                    .finally(() => {
+                        deletePopup.showLoadingText('Удалить');
+                    })
             })
-            .catch((err) => {
-                console.log(err);
-              })
-            .finally(() => {
-                deletePopup.showLoadingText('Удалить');
-            })
-        }) 
         },
         handleCardLike: () => {
-            card.likeClick();
+            if (!card.isLiked()) {
+                api.addLike(cardData._id)
+                    .then((data) => {
+                        card.likeClick();
+                        card.isLengthShow(data);
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    })
+            } else {
+                api.deleteLike(cardData._id)
+                    .then((data) => {
+                        card.likeClick();
+                        card.isLengthShow(data);
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    })
+            }
         }
-    }
-    );
+    })
     return card.generateCard();
 }
 
@@ -88,16 +105,16 @@ const cardsList = new Section({
 const popupCardAdd = new PopupWithForm(popupCardSelector, (cardData) => {
     popupCardAdd.showLoadingText(true);
     api.addMyCard(cardData)
-    .then((card) => {
-        cardsList.addItem(createCard(card));
-        popupCardAdd.close();
-    })
-    .catch((err) => {
-        console.log(err);
-      })
-    .finally(() => {
-        popupCardAdd.showLoadingText(false);
-    })
+        .then((card) => {
+            cardsList.addItem(createCard(card));
+            popupCardAdd.close();
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+        .finally(() => {
+            popupCardAdd.showLoadingText(false);
+        })
 });
 
 popupCardAdd.setEventListeners();
@@ -110,16 +127,16 @@ const userInfo = new UserInfo({ nameSelector, professionSelector, avatarSelector
 const popupProfileEdit = new PopupWithForm(popupProfileSelector, (formData) => {
     popupProfileEdit.showLoadingText(true);
     api.changeUserInfo(formData)
-    .then((data) => {
-        userInfo.setUserInfo(data);
-        popupProfileEdit.close();
-    })
-    .catch((err) => {
-        console.log(err);
-      })
-    .finally(() => {
-        popupProfileEdit.showLoadingText(false);
-    })
+        .then((data) => {
+            userInfo.setUserInfo(data);
+            popupProfileEdit.close();
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+        .finally(() => {
+            popupProfileEdit.showLoadingText(false);
+        })
 });
 
 popupProfileEdit.setEventListeners();
@@ -134,16 +151,16 @@ popupProfileOpenButtonElement.addEventListener('click', function () {
 const popupAvatarEdit = new PopupWithForm(popupAvatarSelector, (avatarData) => {
     popupAvatarEdit.showLoadingText(true);
     api.changeAvatar(avatarData)
-    .then((data) => {
-        userInfo.setUserAvatar(data);
-        popupAvatarEdit.close();
-    })
-    .catch((err) => {
-        console.log(err);
-      })
-    .finally(() => {
-        popupAvatarEdit.showLoadingText(false);
-    })
+        .then((data) => {
+            userInfo.setUserAvatar(data);
+            popupAvatarEdit.close();
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+        .finally(() => {
+            popupAvatarEdit.showLoadingText(false);
+        })
 });
 
 popupAvatarEdit.setEventListeners();
