@@ -29,8 +29,6 @@ export default class Card {
         this._elementCardTitle.textContent = this._name;
         this._elementCardImage.alt = this._link;
 
-        this._likeCounter.textContent = this._likes.length;
-
         this._deleteButton = this._element.querySelector('.element__button-delete');
 
         if (this._ownerId !== this._userId) {
@@ -39,11 +37,7 @@ export default class Card {
 
         this._likeButton = this._element.querySelector('.element__like-button');
 
-        if (this._likes.find((like) => like._id === this._userId)) {
-            this._likeButton.classList.add('element__like-button_active');
-        }
-
-
+        this._updateLikeView();
         this._setEventListeners();
 
         return this._element;
@@ -54,7 +48,7 @@ export default class Card {
         this._deleteButton = this._element.querySelector('.element__button-delete');
 
         this._likeButton.addEventListener('click', () => {
-            this.likeClick();
+            this._handleCardLike();
         });
         this._deleteButton.addEventListener('click', () => {
             this._handleCardDelete();
@@ -65,22 +59,20 @@ export default class Card {
     }
 
     isLiked() {
-        return this._likeButton.classList.contains('element__like-button_active');
+        return Boolean(this._likes.some((like) => like._id === this._userId))
     }
 
-    isLengthShow(newData) {
-        this._likes = newData.likes;
+    setLikes(card) {
+        this._likes = card.likes;
+        this._updateLikeView()
+    }
+
+    _updateLikeView() {
         this._likeCounter.textContent = this._likes.length;
-        
-    }
-
-    likeClick() {
-        if (!this.isLiked()) {
-            this._likeButton.classList.add('element__like-button_active');  
-           
+        if (this.isLiked()) {
+            this._likeButton.classList.add('element__like-button_active')
         } else {
-            this._likeButton.classList.remove('element__like-button_active');
-          
+            this._likeButton.classList.remove('element__like-button_active')
         }
     }
 

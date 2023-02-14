@@ -1,4 +1,4 @@
-import './pages/index.css';
+import './pages/index.css'; 
 import { api } from "./components/Api.js";
 import Section from "../src/components/Section.js";
 import Card from "../src/components/Card.js";
@@ -75,8 +75,7 @@ const createCard = (cardData) => {
             if (!card.isLiked()) {
                 api.addLike(cardData._id)
                     .then((data) => {
-                        card.likeClick();
-                        card.isLengthShow(data);
+                        card.setLikes(data);
                     })
                     .catch((err) => {
                         console.log(err);
@@ -84,8 +83,7 @@ const createCard = (cardData) => {
             } else {
                 api.deleteLike(cardData._id)
                     .then((data) => {
-                        card.likeClick();
-                        card.isLengthShow(data);
+                        card.setLikes(data);
                     })
                     .catch((err) => {
                         console.log(err);
