@@ -1,4 +1,4 @@
-import './pages/index.css'; 
+
 import { api } from "./components/Api.js";
 import Section from "../src/components/Section.js";
 import Card from "../src/components/Card.js";
