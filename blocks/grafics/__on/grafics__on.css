@@ -1,0 +1,19 @@
+.grafics__on {
+  border-radius: 8px;
+  border: 0;
+  height: 55px;
+  min-width: 200px;
+  background-color: rgba(73, 85, 101, 0.3);
+  margin-right: 30px;
+}
+
+.grafics__on:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 890px) {
+  .grafics__on {
+    margin: 0 70px 10px;
+  }
+}

@@ -1,0 +1,11 @@
+.grafics__button__section {
+    display: flex;
+    justify-content: center;
+}
+
+@media screen and (max-width: 890px) {
+    .grafics__button__section {
+      flex-direction: column;
+    }
+  }
+  
