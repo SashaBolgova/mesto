@@ -1,5 +1,5 @@
 .elements {
-  max-width: 880px;
+  max-width: 1000px;
   margin: 47.25px auto 0;
   padding: 0;
   display: flex;
@@ -8,7 +8,7 @@
 
 @media screen and (max-width: 890px) {
   .elements {
-    max-width: 350px;
+    max-width: 380px;
     margin-top: 26px;
   }
 }

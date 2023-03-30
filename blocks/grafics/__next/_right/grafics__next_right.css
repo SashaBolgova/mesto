@@ -1,0 +1,18 @@
+.grafics__next_right {
+    display: block;
+    background: url(../../../../images/271220.png) center / 10px 16px no-repeat ;
+    margin-right: 10px;
+    opacity: 50%; 
+}
+
+.grafics__next_right:hover {
+    opacity: 100%;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+    .grafics__next_right {
+        margin-right: 5px;
+        background: url(../../../../images/271220.png) center / 5px 10px no-repeat ;
+    }
+  }

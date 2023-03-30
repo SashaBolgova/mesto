@@ -1,0 +1,13 @@
+.grafics__next {
+    display: block;
+    border: none;
+    height: 50px;
+    width: 40px;
+}
+
+@media screen and (max-width: 500px) {
+    .grafics__next {
+        height: 10px;
+        width: 5px;
+    }
+  }
